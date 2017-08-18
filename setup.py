@@ -14,6 +14,7 @@ if sys.version_info < (3, 4):
 tests_require = [
     "pytest-flakes",
     "pytest-remove-stale-bytecode",
+    "mongomock",
 ]
 
 if sys.version_info < (3, 3):

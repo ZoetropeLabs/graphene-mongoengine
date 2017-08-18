@@ -1,11 +1,29 @@
+import sys
 from setuptools import find_packages, setup
+
+install_requires=[
+    'six>=1.10.0',
+    'graphene>=1.0',
+    'mongoengine>=0.10.6',
+    'iso8601',
+]
+
+if sys.version_info < (3, 4):
+    install_requires.append('singledispatch>=3.4.0.3')
+
+tests_require=[
+    "pytest-flakes",
+]
+
+if sys.version_info < (3, 3):
+    tests_require.append('mock')
 
 setup(
     name='graphene-mongoengine',
-    version='0.1',
+    version='0.1.0',
 
     description='Graphene Mongoengine integration',
-    long_description=open('README.md').read(),
+    #long_description=open('README.md').read(),
 
     url='https://github.com/ozanturksever/graphene-mongoengine',
 
@@ -31,17 +49,9 @@ setup(
 
     packages=find_packages(exclude=['tests']),
 
-    install_requires=[
-        'six>=1.10.0',
-        'graphene>=1.0',
-        'mongoengine>=0.10.6',
-        'iso8601',
-        'singledispatch>=3.4.0.3',
-    ],
-    tests_require=[
-        'pytest',
-        'mock',
-    ],
+    install_requires=install_requires,
+    tests_require=tests_require,
+    setup_requires=["pytest-runner", "pytest"],
     include_package_data=True,
     zip_safe=False,
     platforms='any',

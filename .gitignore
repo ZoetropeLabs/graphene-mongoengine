@@ -65,3 +65,6 @@ target/
 # Databases
 *.sqlite3
 .vscode
+
+.eggs
+*.egg-info

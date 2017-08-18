@@ -105,7 +105,7 @@ class MongoengineObjectType(six.with_metaclass(MongoengineObjectTypeMeta, Object
     #     return model == cls._meta.model
     #
     def fill(self, data):
-        for key, field in self._meta.model._fields.iteritems():
+        for key, field in six.iteritems(self._meta.model._fields):
             if key in data:
                 setattr(self, key, data[key])
 

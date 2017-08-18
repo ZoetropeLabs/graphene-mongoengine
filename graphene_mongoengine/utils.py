@@ -1,5 +1,6 @@
 import inspect
 
+import six
 import mongoengine
 
 
@@ -27,7 +28,7 @@ import mongoengine
 
 def get_model_fields(model):
     # reverse_fields = get_reverse_fields(model)
-    all_fields = sorted(list([field for key, field in model._fields.iteritems()]))
+    all_fields = sorted(list([field for key, field in six.iteritems(model._fields)]))
     # all_fields += list(reverse_fields)
 
     return all_fields

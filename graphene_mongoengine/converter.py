@@ -2,15 +2,23 @@
 # from django.utils.encoding import force_text
 from collections import namedtuple
 
-from graphene import (ID, Boolean, Dynamic, Enum, Field, Float, Int, List,
-                      NonNull, String)
-from graphene.relay import is_node
+from graphene import (ID,
+    Boolean,
+    Dynamic,
+    #Enum,
+    Field,
+    Float,
+    Int,
+    List,
+    NonNull,
+    String)
+#from graphene.relay import is_node
 from graphene.types.datetime import DateTime
 from graphene.types.json import JSONString
 from graphene.types.scalars import Scalar
-from graphene.utils.str_converters import to_const
-from graphql import assert_valid_name
-from graphql.language.ast import StringValue
+#from graphene.utils.str_converters import to_const
+#from graphql import assert_valid_name
+#from graphql.language.ast import StringValue
 
 import mongoengine
 
@@ -111,7 +119,7 @@ def convert_field_to_float(field, registry=None):
 def convert_date_to_string(field, registry=None):
     return DateTime(description=field.db_field, required=not field.null)
 
-  
+
 @convert_mongoengine_field.register(mongoengine.DictField)
 def convert_dict_to_jsonstring(field, registry=None):
     return JSONString(description=field.db_field, required=not field.null)
@@ -140,7 +148,7 @@ class NdbKeyReferenceField(Scalar):
 
 
 @convert_mongoengine_field.register(mongoengine.ReferenceField)
-def convert_field_to_string(field, registry=None):
+def convert_referencefield_to_field(field, registry=None):
     model = field.document_type
 
     def dynamic_type():
@@ -227,9 +235,6 @@ def convert_field_to_string(field, registry=None):
 #     return Dynamic(dynamic_type)
 #
 #
-@convert_mongoengine_field.register(mongoengine.DateTimeField)
-def convert_date_to_string(field, registry=None):
-    return DateTime(description=field.db_field, required=not field.null)
 
 
 @convert_mongoengine_field.register(mongoengine.ListField)

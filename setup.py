@@ -1,7 +1,7 @@
 import sys
 from setuptools import find_packages, setup
 
-install_requires=[
+install_requires = [
     'six>=1.10.0',
     'graphene>=1.0',
     'mongoengine>=0.10.6',
@@ -11,7 +11,7 @@ install_requires=[
 if sys.version_info < (3, 4):
     install_requires.append('singledispatch>=3.4.0.3')
 
-tests_require=[
+tests_require = [
     "pytest-flakes",
 ]
 
@@ -23,7 +23,7 @@ setup(
     version='0.1.0',
 
     description='Graphene Mongoengine integration',
-    #long_description=open('README.md').read(),
+    # long_description=open('README.md').read(),
 
     url='https://github.com/ozanturksever/graphene-mongoengine',
 

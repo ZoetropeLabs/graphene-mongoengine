@@ -20,25 +20,13 @@ import mongoengine
 #             yield related
 
 
-# def maybe_queryset(value):
-#     if isinstance(value, Manager):
-#         value = value.get_queryset()
-#     return value
-#
-
 def get_model_fields(model):
     # reverse_fields = get_reverse_fields(model)
-    all_fields = sorted(list([field for key, field in six.iteritems(model._fields)]))
     # all_fields += list(reverse_fields)
 
+    all_fields = list([field for field in six.itervalues(model._fields)])
+
     return all_fields
-
-
-def get_related_model(field):
-    if hasattr(field, 'rel'):
-        # Django 1.6, 1.7
-        return field.rel.to
-    return field.related_model
 
 
 def is_valid_mongoengine_model(model):
